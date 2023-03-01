@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System.Diagnostics;
-//using System.Numerics;
 using UnityEngine;
+using static ButtonBehavior;
 
 public class MyMouseInput : MonoBehaviour
 {
-    int index = 1;
+    int index = 1; // for labeling each cube that gets generated
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +17,8 @@ public class MyMouseInput : MonoBehaviour
     void Update()
     {
 
+        //if (ButtonBehavior)
+
         if (Input.GetMouseButtonUp(0))  // check if left button is pressed
         {
             // take mouse position, convert from screen space to world space, do a raycast, store output of raycast into 
@@ -25,22 +26,24 @@ public class MyMouseInput : MonoBehaviour
 
             #region Screen To World
             RaycastHit hitInfo = new RaycastHit();
-            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo); // starting point of ray in world coordinates, direction of ray
             if (hit)
             {
-
+                Debug.Log(hitInfo.transform.name);
+                Debug.Log(hitInfo.transform.tag);
                 #region HIDE
                 var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.tag = "MyCube" + index;
-                index++;
+                //cube.tag = "MyCube" + index;
+                //index++;
                 //cube.GetComponent<BoxCollider>().isTrigger = true;
                 //cube.GetComponent<Renderer>().material = blockMaterial;
                 #endregion
 
                 //cube.transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y + 0.5f, hitInfo.point.z);
                 #region HIDE
-                if (hitInfo.transform.tag.Equals("Base"))
+                if (hitInfo.transform.name.Equals("Base"))
                 {
+                    Debug.Log("hitInfo tag = base");
                     cube.transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y + (0.5f), hitInfo.point.z);
                 }
                 #region HIDE
@@ -75,8 +78,8 @@ public class MyMouseInput : MonoBehaviour
                 }
                 #endregion
 
-                //Debug.DrawRay(hitInfo.point, hitInfo.normal, Color.red, 2, false);
-                //Debug.Log(hitInfo.normal);
+                Debug.DrawRay(hitInfo.point, hitInfo.normal, Color.red, 2, false);
+                Debug.Log(hitInfo.normal);
                 #endregion
 
 

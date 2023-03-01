@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 557935427}
   - component: {fileID: 557935428}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557935422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1aa2ea53c54a410790f3e7245f7cda6, type: 3}
   m_Name: 
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 947396300}
   - component: {fileID: 947396299}
   m_Layer: 5
-  m_Name: Button (Legacy) (2)
+  m_Name: Button (Cube)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -444,7 +444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -325.71, y: 130}
+  m_AnchoredPosition: {x: -325.71, y: 135}
   m_SizeDelta: {x: 290, y: 241}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &947396299
@@ -490,7 +490,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 947396300}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1002380877}
+        m_TargetAssemblyTypeName: ButtonBehavior, Assembly-CSharp
+        m_MethodName: OnButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &947396300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,6 +639,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
+--- !u!1 &1002380876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1002380878}
+  - component: {fileID: 1002380877}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1002380877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002380876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9ff7839589a4d9ca41e1fbf803617c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1002380878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002380876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.535774, y: -406, z: 446}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1410698092
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +696,7 @@ GameObject:
   - component: {fileID: 1410698095}
   - component: {fileID: 1410698094}
   m_Layer: 5
-  m_Name: Button (Legacy) (1)
+  m_Name: Button (Capsule)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,7 +719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -325.71, y: -129}
+  m_AnchoredPosition: {x: -325.71, y: -133}
   m_SizeDelta: {x: 290, y: 241}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1410698094
@@ -865,7 +921,7 @@ GameObject:
   - component: {fileID: 2046246945}
   - component: {fileID: 2046246944}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: Button (Sphere)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,7 +944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -325.71, y: -0.000012871}
+  m_AnchoredPosition: {x: -325.71, y: 0.0000047684}
   m_SizeDelta: {x: 290, y: 241}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2046246944
