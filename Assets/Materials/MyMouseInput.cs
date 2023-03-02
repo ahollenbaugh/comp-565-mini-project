@@ -105,5 +105,22 @@ public class MyMouseInput : MonoBehaviour
             }
             #endregion
         }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            // If the user right-clicks on an object, it explodes.
+            RaycastHit hitInfo = new RaycastHit();
+            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+            if (hit)
+            {
+                if (!hitInfo.transform.name.Equals("Base"))
+                {
+                    TriangleExplosion exp = transform.GetComponent<TriangleExplosion>();
+                    exp.SplitMesh(hitInfo.transform);
+                    //var exp = hitInfo.transform.AddComponent<TriangleExplosion>();
+                    //StartCoroutine(exp.SplitMesh(true));
+
+                }
+            }
+        }
     }
 }
