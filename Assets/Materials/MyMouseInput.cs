@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MyMouseInput : MonoBehaviour
 {
-    int index = 1; // for labeling each cube that gets generated
-    //public GameObject geomObj;
     public PrimitiveType objectType;
 
     public void ChangePrimitiveTypeCube()
@@ -13,11 +11,21 @@ public class MyMouseInput : MonoBehaviour
         objectType = PrimitiveType.Cube;
     }
 
+    public void ChangePrimitiveTypeSphere()
+    {
+        objectType = PrimitiveType.Sphere;
+    }
+
+    public void ChangePrimitiveTypeCapsule()
+    {
+        objectType = PrimitiveType.Capsule;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //geomObj = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        objectType = PrimitiveType.Capsule;
+        objectType = PrimitiveType.Cube;
+
         // CreatePrimitive returns a GameObject
         // PrimitiveType.Capsule is a PrimitiveType
     }
@@ -36,19 +44,18 @@ public class MyMouseInput : MonoBehaviour
             #region Screen To World
             RaycastHit hitInfo = new RaycastHit();
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo); // starting point of ray in world coordinates, direction of ray
+            Debug.Log(hitInfo.transform.tag);
             if (hit)
             {
                 #region HIDE
                 var geomObj = GameObject.CreatePrimitive(objectType);
-                //cube.tag = "MyCube" + index;
-                //index++;
                 //cube.GetComponent<BoxCollider>().isTrigger = true;
                 //cube.GetComponent<Renderer>().material = blockMaterial;
                 #endregion
 
                 //cube.transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y + 0.5f, hitInfo.point.z);
                 #region HIDE
-                if (hitInfo.transform.name.Equals("Base"))
+                if (hitInfo.transform.name.Equals("Base") && !hitInfo.transform.tag.Equals("button"))
                 {
                     geomObj.transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y + (0.5f), hitInfo.point.z);
                 }
