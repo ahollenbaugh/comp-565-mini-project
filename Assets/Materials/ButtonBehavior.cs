@@ -1,17 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static MyMouseInput; // for changing the spawning gameobjects
 
 public class ButtonBehavior : MonoBehaviour
 {
-    int n;
-    public string OnButtonPress()
+    public MyMouseInput mymouseinput;
+    public void OnButtonPress()
     {
-        //n++;
-        //Debug.Log(EventSystem.current.currentSelectedGameObject.name + " button clicked " + n + " times.");
-        return EventSystem.current.currentSelectedGameObject.name;
+        mymouseinput.objectType = PrimitiveType.Cube;
     }
 
     // Start is called before the first frame update

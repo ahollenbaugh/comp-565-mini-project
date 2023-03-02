@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ButtonBehavior;
 
 public class MyMouseInput : MonoBehaviour
 {
     int index = 1; // for labeling each cube that gets generated
+    //public GameObject geomObj;
+    public PrimitiveType objectType;
+
+    public void ChangePrimitiveTypeCube()
+    {
+        objectType = PrimitiveType.Cube;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        //geomObj = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+        objectType = PrimitiveType.Capsule;
+        // CreatePrimitive returns a GameObject
+        // PrimitiveType.Capsule is a PrimitiveType
     }
 
     // Update is called once per frame
@@ -29,10 +38,8 @@ public class MyMouseInput : MonoBehaviour
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo); // starting point of ray in world coordinates, direction of ray
             if (hit)
             {
-                Debug.Log(hitInfo.transform.name);
-                Debug.Log(hitInfo.transform.tag);
                 #region HIDE
-                var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                var geomObj = GameObject.CreatePrimitive(objectType);
                 //cube.tag = "MyCube" + index;
                 //index++;
                 //cube.GetComponent<BoxCollider>().isTrigger = true;
@@ -43,38 +50,39 @@ public class MyMouseInput : MonoBehaviour
                 #region HIDE
                 if (hitInfo.transform.name.Equals("Base"))
                 {
-                    Debug.Log("hitInfo tag = base");
-                    cube.transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y + (0.5f), hitInfo.point.z);
+                    geomObj.transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y + (0.5f), hitInfo.point.z);
                 }
                 #region HIDE
                 else
                 {
-                    if (hitInfo.normal == new Vector3(0, 0, 1)) // z+
-                    {
-                        cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.transform.position.y, hitInfo.point.z + (0.5f));
-                    }
-                    #region HIDE
-                    if (hitInfo.normal == new Vector3(1, 0, 0)) // x+
-                    {
-                        cube.transform.position = new Vector3(hitInfo.point.x + (0.5f), hitInfo.transform.position.y, hitInfo.transform.position.z);
-                    }
-                    if (hitInfo.normal == new Vector3(0, 1, 0)) // y+
-                    {
-                        cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.point.y + (0.5f), hitInfo.transform.position.z);
-                    }
-                    if (hitInfo.normal == new Vector3(0, 0, -1)) // z-
-                    {
-                        cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.transform.position.y, hitInfo.point.z - (0.5f));
-                    }
-                    if (hitInfo.normal == new Vector3(-1, 0, 0)) // x-
-                    {
-                        cube.transform.position = new Vector3(hitInfo.point.x - (0.5f), hitInfo.transform.position.y, hitInfo.transform.position.z);
-                    }
-                    if (hitInfo.normal == new Vector3(0, -1, 0)) // y-
-                    {
-                        cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.point.y - (0.5f), hitInfo.transform.position.z);
-                    }
-                    #endregion
+                    geomObj.transform.position = hitInfo.transform.position + (hitInfo.normal);
+                    geomObj.transform.rotation = Quaternion.LookRotation(hitInfo.normal, Vector3.up);
+                    //if (hitInfo.normal == new Vector3(0, 0, 1)) // z+
+                    //{
+                    //    cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.transform.position.y, hitInfo.point.z + (0.5f));
+                    //}
+                    //#region HIDE
+                    //if (hitInfo.normal == new Vector3(1, 0, 0)) // x+
+                    //{
+                    //    cube.transform.position = new Vector3(hitInfo.point.x + (0.5f), hitInfo.transform.position.y, hitInfo.transform.position.z);
+                    //}
+                    //if (hitInfo.normal == new Vector3(0, 1, 0)) // y+
+                    //{
+                    //    cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.point.y + (0.5f), hitInfo.transform.position.z);
+                    //}
+                    //if (hitInfo.normal == new Vector3(0, 0, -1)) // z-
+                    //{
+                    //    cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.transform.position.y, hitInfo.point.z - (0.5f));
+                    //}
+                    //if (hitInfo.normal == new Vector3(-1, 0, 0)) // x-
+                    //{
+                    //    cube.transform.position = new Vector3(hitInfo.point.x - (0.5f), hitInfo.transform.position.y, hitInfo.transform.position.z);
+                    //}
+                    //if (hitInfo.normal == new Vector3(0, -1, 0)) // y-
+                    //{
+                    //    cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.point.y - (0.5f), hitInfo.transform.position.z);
+                    //}
+                    //#endregion
                 }
                 #endregion
 

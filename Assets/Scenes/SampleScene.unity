@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1aa2ea53c54a410790f3e7245f7cda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectType: 0
 --- !u!114 &557935428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1aa2ea53c54a410790f3e7245f7cda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectType: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,9 +493,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1002380877}
-        m_TargetAssemblyTypeName: ButtonBehavior, Assembly-CSharp
-        m_MethodName: OnButtonPress
+      - m_Target: {fileID: 557935427}
+        m_TargetAssemblyTypeName: MyMouseInput, Assembly-CSharp
+        m_MethodName: ChangePrimitiveTypeCube
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -668,6 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9ff7839589a4d9ca41e1fbf803617c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mymouseinput: {fileID: 0}
 --- !u!4 &1002380878
 Transform:
   m_ObjectHideFlags: 0
