@@ -114,10 +114,10 @@ public class MyMouseInput : MonoBehaviour
             {
                 if (!hitInfo.transform.name.Equals("Base"))
                 {
-                    TriangleExplosion exp = transform.GetComponent<TriangleExplosion>();
-                    exp.SplitMesh(hitInfo.transform);
-                    //var exp = hitInfo.transform.AddComponent<TriangleExplosion>();
-                    //StartCoroutine(exp.SplitMesh(true));
+                    // TriangleExplosion exp = transform.GetComponent<TriangleExplosion>();
+                    // exp.SplitMesh(hitInfo.transform);
+                    var exp = hitInfo.transform.gameObject.AddComponent<TriangleExplosion>();
+                    StartCoroutine(exp.SplitMesh(true));
 
                 }
             }
