@@ -44,7 +44,7 @@ public class MyMouseInput : MonoBehaviour
             #region Screen To World
             RaycastHit hitInfo = new RaycastHit();
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo); // starting point of ray in world coordinates, direction of ray
-            Debug.Log(hitInfo.transform.tag);
+            
             if (hit)
             {
                 #region HIDE
@@ -53,7 +53,6 @@ public class MyMouseInput : MonoBehaviour
                 //cube.GetComponent<Renderer>().material = blockMaterial;
                 #endregion
 
-                //cube.transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y + 0.5f, hitInfo.point.z);
                 #region HIDE
                 if (hitInfo.transform.name.Equals("Base") && !hitInfo.transform.tag.Equals("button"))
                 {
@@ -64,32 +63,6 @@ public class MyMouseInput : MonoBehaviour
                 {
                     geomObj.transform.position = hitInfo.transform.position + (hitInfo.normal);
                     geomObj.transform.rotation = Quaternion.LookRotation(hitInfo.normal, Vector3.up);
-                    //if (hitInfo.normal == new Vector3(0, 0, 1)) // z+
-                    //{
-                    //    cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.transform.position.y, hitInfo.point.z + (0.5f));
-                    //}
-                    //#region HIDE
-                    //if (hitInfo.normal == new Vector3(1, 0, 0)) // x+
-                    //{
-                    //    cube.transform.position = new Vector3(hitInfo.point.x + (0.5f), hitInfo.transform.position.y, hitInfo.transform.position.z);
-                    //}
-                    //if (hitInfo.normal == new Vector3(0, 1, 0)) // y+
-                    //{
-                    //    cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.point.y + (0.5f), hitInfo.transform.position.z);
-                    //}
-                    //if (hitInfo.normal == new Vector3(0, 0, -1)) // z-
-                    //{
-                    //    cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.transform.position.y, hitInfo.point.z - (0.5f));
-                    //}
-                    //if (hitInfo.normal == new Vector3(-1, 0, 0)) // x-
-                    //{
-                    //    cube.transform.position = new Vector3(hitInfo.point.x - (0.5f), hitInfo.transform.position.y, hitInfo.transform.position.z);
-                    //}
-                    //if (hitInfo.normal == new Vector3(0, -1, 0)) // y-
-                    //{
-                    //    cube.transform.position = new Vector3(hitInfo.transform.position.x, hitInfo.point.y - (0.5f), hitInfo.transform.position.z);
-                    //}
-                    //#endregion
                 }
                 #endregion
 
@@ -114,8 +87,6 @@ public class MyMouseInput : MonoBehaviour
             {
                 if (!hitInfo.transform.name.Equals("Base"))
                 {
-                    // TriangleExplosion exp = transform.GetComponent<TriangleExplosion>();
-                    // exp.SplitMesh(hitInfo.transform);
                     var exp = hitInfo.transform.gameObject.AddComponent<TriangleExplosion>();
                     StartCoroutine(exp.SplitMesh(true));
 
