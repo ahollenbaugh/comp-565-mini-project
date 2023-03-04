@@ -5,6 +5,9 @@ using UnityEngine;
 public class MyMouseInput : MonoBehaviour
 {
     public PrimitiveType objectType;
+    GameObject geomObj;
+    public Material[] material;
+    Renderer r;
 
     public void ChangePrimitiveTypeCube()
     {
@@ -21,11 +24,19 @@ public class MyMouseInput : MonoBehaviour
         objectType = PrimitiveType.Capsule;
     }
 
+    public void ChangeMat1()
+    {
+        // change to material 1
+        r.sharedMaterial = material[0];
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         objectType = PrimitiveType.Cube;
-
+        r = GetComponent<Renderer>();
+        r.enabled = true;
+        r.sharedMaterial = material[0];
         // CreatePrimitive returns a GameObject
         // PrimitiveType.Capsule is a PrimitiveType
     }
@@ -48,7 +59,7 @@ public class MyMouseInput : MonoBehaviour
             if (hit)
             {
                 #region HIDE
-                var geomObj = GameObject.CreatePrimitive(objectType);
+                geomObj = GameObject.CreatePrimitive(objectType);
                 //cube.GetComponent<BoxCollider>().isTrigger = true;
                 //cube.GetComponent<Renderer>().material = blockMaterial;
                 #endregion
