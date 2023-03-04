@@ -34,7 +34,7 @@ public class MyMouseInput : MonoBehaviour
     void Update()
     {
 
-        //if (ButtonBehavior)
+        
 
         if (Input.GetMouseButtonUp(0))  // check if left button is pressed
         {
